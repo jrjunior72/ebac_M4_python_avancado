@@ -4,9 +4,13 @@ import csv
 import random
 import concurrent.futures
 from bs4 import BeautifulSoup
+from pathlib import Path
 
 # global headers to be used for requests
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'}
+
+# local path to the movies.csv file
+data_path = Path(__file__).parent.parent / 'data' / 'movies.csv'
 
 MAX_THREADS = 20
 
@@ -47,7 +51,7 @@ def extract_movie_details(movie_link):
                 plot_tag = movie_soup.find('span', attrs={'data-testid': 'plot-xs_to_m'})
                 plot_text = plot_tag.get_text().strip() if plot_tag else None
                 
-                with open('movies.csv', mode='a', newline='', encoding='utf-8') as file:
+                with data_path.open(mode='a', newline='', encoding='utf-8') as file:
                     movie_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                     if all([title, date, rating, plot_text]):
                         print(title, date, rating, plot_text)
