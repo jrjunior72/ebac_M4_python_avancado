@@ -30,3 +30,15 @@ Isso garante que qualquer pessoa possa rodar o projeto com as mesmas dependênci
 
 ```bash
 pip freeze > requirements.txt
+```
+
+## 🗂️ Organização da pasta do projeto
+```bash
+M4_Python_Avancado/
+├── data/              # arquivos coletados via scraping
+├── src/               # arquivos .py com os scripts
+│   └── multithreading_imdb.py
+├── notebooks/         # seus .ipynb, se houver
+├── requirements.txt
+├── README.md
+└── .gitignore
